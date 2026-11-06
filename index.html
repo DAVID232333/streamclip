@@ -1,1 +1,153 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StreamClip | Gaming Clip Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">STREAM<span>CLIP</span></div>
+  <span class="pill">GAMING CLIP STUDIO · V1</span>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">GAMING CONTENT TOOLKIT</p>
+    <h1>Find the moment.<br><em>Make the clip.</em></h1>
+    <p>
+      Upload gameplay, find potential highlights,
+      create clips, and watch livestreams.
+    </p>
+  </section>
+
+  <div class="layout">
+
+    <section class="panel">
+      <h2>1. Upload Gaming Video</h2>
+
+      <label class="upload" for="file">
+        Choose a gaming video
+        <small>MP4, WebM, MOV (browser support varies)</small>
+      </label>
+
+      <input type="file" id="file" accept="video/*">
+
+      <p id="fileInfo" class="muted">No video selected</p>
+
+      <video id="video" controls playsinline preload="metadata"></video>
+
+      <div class="transport">
+        <button id="setStart" class="secondary">
+          Set start at playhead
+        </button>
+        <button id="setEnd" class="secondary">
+          Set end at playhead
+        </button>
+      </div>
+
+      <h2>2. Manual Clip Editor</h2>
+
+      <div class="times">
+        <label>
+          Start (seconds)
+          <input id="start" type="number"
+                 min="0" step="0.1" value="0">
+        </label>
+
+        <label>
+          End (seconds)
+          <input id="end" type="number"
+                 min="0" step="0.1" value="0">
+        </label>
+      </div>
+
+      <p id="durationText" class="muted">Clip length: —</p>
+
+      <div class="transport">
+        <button id="preview">Preview Clip</button>
+        <button id="export">Download Clip (WebM)</button>
+      </div>
+
+      <p id="exportStatus" class="muted" role="status"></p>
+    </section>
+
+    <aside class="panel">
+      <h2>3. Automatic Highlight Finder</h2>
+
+      <p class="muted">
+        Scan audio loudness to find potential
+        exciting moments in gaming recordings.
+      </p>
+
+      <label>
+        Suggested clip length
+        <select id="clipLength">
+          <option value="10">10 seconds</option>
+          <option value="20" selected>20 seconds</option>
+          <option value="30">30 seconds</option>
+          <option value="45">45 seconds</option>
+        </select>
+      </label>
+
+      <button id="analyze">Find Highlights</button>
+
+      <p id="analyzeStatus" class="muted" role="status">
+        Upload a video to begin.
+      </p>
+
+      <div id="suggestions" class="suggestions"></div>
+
+      <div class="note">
+        <strong>How automatic detection works</strong>
+        <p>
+          StreamClip identifies louder audio moments.
+          It cannot recognize specific jokes, speech,
+          or gameplay events yet.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="panel live-section" id="livestreams">
+    <h2>4. Livestream Viewer</h2>
+
+    <p class="muted">
+      Watch Twitch or YouTube Live streams.
+      Automatic live clipping is planned for V2.
+    </p>
+
+    <div class="live-platforms">
+      <button id="twitchBtn" type="button">Twitch</button>
+      <button id="youtubeBtn" type="button"
+              class="secondary">YouTube Live</button>
+    </div>
+
+    <label for="streamUrl">Livestream URL</label>
+
+    <input type="url" id="streamUrl"
+           placeholder="Paste Twitch or YouTube livestream URL">
+
+    <button id="loadStream" type="button">
+      Load Livestream
+    </button>
+
+    <p id="liveStatus" class="muted" role="status">
+      Select a platform and paste a link.
+    </p>
+
+    <div class="live-player" id="livePlayer"></div>
+  </section>
+</main>
+
+<footer>
+  STREAMCLIP · Built for creators
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+
