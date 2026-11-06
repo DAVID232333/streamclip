@@ -3,7 +3,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
   <title>StreamClip | Gaming Clip Studio</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +12,7 @@
 
 <header>
   <div class="logo">STREAM<span>CLIP</span></div>
-  <span class="pill">GAMING CLIP STUDIO · V1</span>
+  <span class="pill">GAMING CLIP STUDIO · V2</span>
 </header>
 
 <main>
@@ -19,13 +20,12 @@
     <p class="eyebrow">GAMING CONTENT TOOLKIT</p>
     <h1>Find the moment.<br><em>Make the clip.</em></h1>
     <p>
-      Upload gameplay, find potential highlights,
+      Upload gameplay, find viral reactions,
       create clips, and watch livestreams.
     </p>
   </section>
 
   <div class="layout">
-
     <section class="panel">
       <h2>1. Upload Gaming Video</h2>
 
@@ -36,14 +36,26 @@
 
       <input type="file" id="file" accept="video/*">
 
-      <p id="fileInfo" class="muted">No video selected</p>
+      <p id="fileInfo" class="muted">
+        No video selected
+      </p>
 
-      <video id="video" controls playsinline preload="metadata"></video>
+      <video
+        id="video"
+        controls
+        playsinline
+        preload="metadata">
+      </video>
+
+      <button id="fullscreenBtn" type="button">
+        ⛶ Fullscreen Video
+      </button>
 
       <div class="transport">
         <button id="setStart" class="secondary">
           Set start at playhead
         </button>
+
         <button id="setEnd" class="secondary">
           Set end at playhead
         </button>
@@ -65,81 +77,124 @@
         </label>
       </div>
 
-      <p id="durationText" class="muted">Clip length: —</p>
+      <p id="durationText" class="muted">
+        Clip length: —
+      </p>
 
       <div class="transport">
         <button id="preview">Preview Clip</button>
-        <button id="export">Download Clip (WebM)</button>
+        <button id="export">
+          Download Clip (WebM)
+        </button>
       </div>
 
-      <p id="exportStatus" class="muted" role="status"></p>
+      <p id="exportStatus" class="muted"
+         role="status"></p>
     </section>
 
     <aside class="panel">
-      <h2>3. Automatic Highlight Finder</h2>
+      <h2>3. Viral Highlight Finder</h2>
 
       <p class="muted">
-        Scan audio loudness to find potential
-        exciting moments in gaming recordings.
+        Detect visual changes, audio spikes,
+        and trending streamer phrases.
       </p>
 
-      <label>
+      <label for="clipLength">
         Suggested clip length
-        <select id="clipLength">
-          <option value="10">10 seconds</option>
-          <option value="20" selected>20 seconds</option>
-          <option value="30">30 seconds</option>
-          <option value="45">45 seconds</option>
-        </select>
       </label>
 
-      <button id="analyze">Find Highlights</button>
+      <select id="clipLength">
+        <option value="10">10 seconds</option>
+        <option value="20" selected>20 seconds</option>
+        <option value="30">30 seconds</option>
+        <option value="45">45 seconds</option>
+      </select>
 
-      <p id="analyzeStatus" class="muted" role="status">
+      <div class="transport">
+        <button id="analyze">
+          Find Visual Highlights
+        </button>
+
+        <button id="findViral">
+          Find Viral Moments
+        </button>
+      </div>
+
+      <label for="keywords">
+        TikTok and streamer keywords
+      </label>
+
+      <textarea id="keywords" rows="6"
+        style="width:100%; margin-top:8px;
+        padding:12px; background:#0d111b;
+        color:white; border:1px solid #303648;
+        border-radius:10px;"></textarea>
+
+      <p class="muted">
+        Separate keywords with commas.
+        Add your own phrases anytime.
+      </p>
+
+      <p id="analyzeStatus" class="muted"
+         role="status">
         Upload a video to begin.
       </p>
 
       <div id="suggestions" class="suggestions"></div>
 
       <div class="note">
-        <strong>How automatic detection works</strong>
+        <strong>How detection works</strong>
         <p>
-          StreamClip identifies louder audio moments.
-          It cannot recognize specific jokes, speech,
-          or gameplay events yet.
+          Visual highlights use frame changes.
+          Viral moments use local speech-to-text
+          and keyword matching. Recognition
+          may miss slang or mishear speech.
         </p>
       </div>
     </aside>
   </div>
 
-  <section class="panel live-section" id="livestreams">
+  <section class="panel live-section"
+           id="livestreams">
+
     <h2>4. Livestream Viewer</h2>
 
     <p class="muted">
-      Watch Twitch or YouTube Live streams.
-      Automatic live clipping is planned for V2.
+      Watch Twitch or YouTube Live.
+      Automatic live clipping requires
+      a separate backend.
     </p>
 
     <div class="live-platforms">
-      <button id="twitchBtn" type="button">Twitch</button>
+      <button id="twitchBtn" type="button">
+        Twitch
+      </button>
+
       <button id="youtubeBtn" type="button"
-              class="secondary">YouTube Live</button>
+              class="secondary">
+        YouTube Live
+      </button>
     </div>
 
-    <label for="streamUrl">Livestream URL</label>
+    <label for="streamUrl">
+      Livestream URL
+    </label>
 
     <input type="url" id="streamUrl"
-           placeholder="Paste Twitch or YouTube livestream URL">
+      placeholder="Paste Twitch or YouTube link">
 
     <button id="loadStream" type="button">
       Load Livestream
     </button>
 
-    <p id="liveStatus" class="muted" role="status">
+    <p id="liveStatus" class="muted"
+       role="status">
       Select a platform and paste a link.
     </p>
 
-    <div class="live-player" id="livePlayer"></div>
+    <div class="live-player"
+         id="livePlayer"></div>
   </section>
 </main>
 
@@ -147,7 +202,8 @@
   STREAMCLIP · Built for creators
 </footer>
 
+<script type="module" src="viral.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
-
