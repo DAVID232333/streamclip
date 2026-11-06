@@ -3,207 +3,155 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1">
-  <title>StreamClip | Gaming Clip Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StreamClip V3 | Gaming Clip Studio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header>
   <div class="logo">STREAM<span>CLIP</span></div>
-  <span class="pill">GAMING CLIP STUDIO · V2</span>
+  <span class="pill">GAMING CLIP STUDIO · V3</span>
 </header>
 
 <main>
   <section class="hero">
-    <p class="eyebrow">GAMING CONTENT TOOLKIT</p>
+    <p class="eyebrow">MADE FOR GAMING CREATORS</p>
     <h1>Find the moment.<br><em>Make the clip.</em></h1>
-    <p>
-      Upload gameplay, find viral reactions,
-      create clips, and watch livestreams.
-    </p>
+    <p>Turn long gaming recordings into viral-ready clips.</p>
   </section>
 
   <div class="layout">
     <section class="panel">
-      <h2>1. Upload Gaming Video</h2>
-
+      <h2>1. Upload Video</h2>
       <label class="upload" for="file">
-        Choose a gaming video
-        <small>MP4, WebM, MOV (browser support varies)</small>
+        Choose a gaming recording
+        <small>MP4, WebM, MOV — browser support varies</small>
       </label>
-
       <input type="file" id="file" accept="video/*">
+      <p id="fileInfo" class="muted">No video selected</p>
 
-      <p id="fileInfo" class="muted">
-        No video selected
-      </p>
-
-      <video
-        id="video"
-        controls
-        playsinline
-        preload="metadata">
-      </video>
-
-      <button id="fullscreenBtn" type="button">
+      <video id="video" controls playsinline preload="metadata"></video>
+      <button id="fullscreenBtn" class="secondary">
         ⛶ Fullscreen Video
       </button>
 
       <div class="transport">
         <button id="setStart" class="secondary">
-          Set start at playhead
+          Set Start at Playhead
         </button>
-
         <button id="setEnd" class="secondary">
-          Set end at playhead
+          Set End at Playhead
         </button>
       </div>
 
       <h2>2. Manual Clip Editor</h2>
-
       <div class="times">
-        <label>
-          Start (seconds)
-          <input id="start" type="number"
-                 min="0" step="0.1" value="0">
+        <label>Start (seconds)
+          <input id="start" type="number" min="0"
+                 step="0.1" value="0">
         </label>
-
-        <label>
-          End (seconds)
-          <input id="end" type="number"
-                 min="0" step="0.1" value="0">
+        <label>End (seconds)
+          <input id="end" type="number" min="0"
+                 step="0.1" value="0">
         </label>
       </div>
 
-      <p id="durationText" class="muted">
-        Clip length: —
-      </p>
-
+      <p id="durationText" class="muted">Clip length: —</p>
       <div class="transport">
         <button id="preview">Preview Clip</button>
-        <button id="export">
-          Download Clip (WebM)
-        </button>
+        <button id="export">Download Clip (WebM)</button>
       </div>
-
-      <p id="exportStatus" class="muted"
-         role="status"></p>
+      <p id="exportStatus" class="muted" role="status"></p>
     </section>
 
     <aside class="panel">
       <h2>3. Viral Highlight Finder</h2>
-
       <p class="muted">
-        Detect visual changes, audio spikes,
-        and trending streamer phrases.
+        Scan the entire recording for spoken slang,
+        streamer reactions, and visual highlights.
       </p>
 
-      <label for="clipLength">
-        Suggested clip length
-      </label>
-
+      <label for="clipLength">Final clip length</label>
       <select id="clipLength">
-        <option value="10">10 seconds</option>
-        <option value="20" selected>20 seconds</option>
         <option value="30">30 seconds</option>
         <option value="45">45 seconds</option>
+        <option value="60" selected>60 seconds (TikTok)</option>
+        <option value="90">90 seconds</option>
+      </select>
+
+      <label for="performanceMode">Performance mode</label>
+      <select id="performanceMode">
+        <option value="low" selected>
+          Low CPU / RAM (Recommended)
+        </option>
+        <option value="balanced">Balanced</option>
+        <option value="high">Detailed</option>
       </select>
 
       <div class="transport">
-        <button id="analyze">
-          Find Visual Highlights
-        </button>
-
-        <button id="findViral">
-          Find Viral Moments
-        </button>
+        <button id="analyze">Find Visual Highlights</button>
+        <button id="findViral">Find Viral Moments</button>
       </div>
 
-      <label for="keywords">
-        TikTok and streamer keywords
-      </label>
+      <button id="cancelAnalysis" class="secondary"
+              type="button" disabled>
+        Cancel Analysis
+      </button>
 
-      <textarea id="keywords" rows="6"
-        style="width:100%; margin-top:8px;
-        padding:12px; background:#0d111b;
-        color:white; border:1px solid #303648;
-        border-radius:10px;"></textarea>
+      <label for="keywords">TikTok + Streamer Keywords</label>
+      <textarea id="keywords" rows="7"></textarea>
+      <p class="muted">Separate custom phrases with commas.</p>
 
-      <p class="muted">
-        Separate keywords with commas.
-        Add your own phrases anytime.
-      </p>
-
-      <p id="analyzeStatus" class="muted"
-         role="status">
+      <p id="analyzeStatus" class="muted" role="status">
         Upload a video to begin.
       </p>
+      <progress id="progressBar" value="0" max="100"></progress>
+      <p id="analysisProgress" class="muted">Progress: 0%</p>
 
       <div id="suggestions" class="suggestions"></div>
 
       <div class="note">
-        <strong>How detection works</strong>
+        <strong>How it works</strong>
         <p>
-          Visual highlights use frame changes.
-          Viral moments use local speech-to-text
-          and keyword matching. Recognition
-          may miss slang or mishear speech.
+          StreamClip transcribes speech in small audio
+          sections and scans frames throughout the video.
+          Results are possible highlights, not guaranteed
+          viral moments.
         </p>
       </div>
     </aside>
   </div>
 
-  <section class="panel live-section"
-           id="livestreams">
-
+  <section class="panel live-section">
     <h2>4. Livestream Viewer</h2>
-
     <p class="muted">
-      Watch Twitch or YouTube Live.
-      Automatic live clipping requires
-      a separate backend.
+      Watch Twitch or YouTube Live. Automatic live
+      clipping will require a separate backend.
     </p>
 
     <div class="live-platforms">
-      <button id="twitchBtn" type="button">
-        Twitch
-      </button>
-
-      <button id="youtubeBtn" type="button"
-              class="secondary">
+      <button id="twitchBtn">Twitch</button>
+      <button id="youtubeBtn" class="secondary">
         YouTube Live
       </button>
     </div>
 
-    <label for="streamUrl">
-      Livestream URL
-    </label>
+    <label for="streamUrl">Livestream URL</label>
+    <input id="streamUrl" type="url"
+           placeholder="Paste Twitch or YouTube URL">
+    <button id="loadStream">Load Livestream</button>
 
-    <input type="url" id="streamUrl"
-      placeholder="Paste Twitch or YouTube link">
-
-    <button id="loadStream" type="button">
-      Load Livestream
-    </button>
-
-    <p id="liveStatus" class="muted"
-       role="status">
+    <p id="liveStatus" class="muted" role="status">
       Select a platform and paste a link.
     </p>
-
-    <div class="live-player"
-         id="livePlayer"></div>
+    <div id="livePlayer" class="live-player"></div>
   </section>
 </main>
 
-<footer>
-  STREAMCLIP · Built for creators
-</footer>
+<footer>STREAMCLIP · Built for creators</footer>
 
-<script type="module" src="viral.js"></script>
 <script src="script.js"></script>
-
+<script type="module" src="viral.js"></script>
 </body>
 </html>
+
