@@ -327,3 +327,29 @@ footer {
     padding: 16px;
   }
 }
+
+#keywords {
+  width: 100%;
+  min-height: 125px;
+  resize: vertical;
+  font: inherit;
+  background: #0d111b;
+  color: white;
+  border: 1px solid #303648;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+#keywords:focus {
+  outline: 2px solid #b69aff;
+  outline-offset: 2px;
+}
+
+#findViral {
+  background: #6d28d9;
+}
+
+#findViral:hover:not(:disabled) {
+  background: #7c3aed;
+}
+
