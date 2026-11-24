@@ -75,7 +75,7 @@
       <select id="clipLength">
         <option value="30">30 seconds</option>
         <option value="45">45 seconds</option>
-        <option value="60" selected>60 seconds (TikTok)</option>
+        <option value="60">60 seconds</option><option value="75" selected>75 seconds (long-form target)</option>
         <option value="90">90 seconds</option>
       </select>
 
@@ -146,11 +146,37 @@
     </p>
     <div id="livePlayer" class="live-player"></div>
   </section>
+<section class="panel" id="vahStudio">
+<h2>5. Viral After Hours — publishing desk</h2>
+<p>Find GTA clips, write a caption and review rights before posting. Search links are discovery tools, not permission to repost.</p>
+<div class="transport"><a href="https://www.youtube.com/results?search_query=GTA+VI+gameplay" target="_blank" rel="noopener">YouTube search</a><a href="https://www.twitch.tv/directory" target="_blank" rel="noopener">Twitch</a><a href="https://x.com/search?q=GTA%20VI&f=live" target="_blank" rel="noopener">X search</a></div>
+<label for="vahSource">Source / creator credit</label><input id="vahSource" placeholder="Creator and source URL">
+<label for="vahMoment">What actually happens in the clip?</label><textarea id="vahMoment" rows="3" placeholder="Describe the moment in your own words"></textarea>
+<label for="vahType">Moment type</label><select id="vahType"><option value="general">Other / surprising</option><option value="fail">Fail</option><option value="chase">Police chase</option><option value="npc">NPC moment</option><option value="detail">Hidden detail</option><option value="rage">Streamer reaction</option></select>
+<button id="vahGenerate" type="button">Suggest captions</button>
+<p class="muted">Local caption templates, not live trend data. Edit to match the actual clip.</p>
+<label for="vahTik">TikTok</label><textarea id="vahTik" rows="2"></textarea>
+<label for="vahIG">Instagram</label><textarea id="vahIG" rows="2"></textarea>
+<label for="vahX">X (manual posting)</label><textarea id="vahX" rows="2"></textarea>
+<h3>Pre-publish review</h3>
+<div id="vahChecks">
+<label><input type="checkbox" value="rights"> I have documented commercial usage rights, including game and third-party footage rights.</label>
+<label><input type="checkbox" value="original"> This is original content, not just a repost with captions.</label>
+<label><input type="checkbox" value="audio"> Music and audio are cleared for commercial use.</label>
+<label><input type="checkbox" value="safety"> I reviewed platform safety, AI disclosure and advertiser suitability.</label>
+<label><input type="checkbox" value="review"> I watched the final export and verified captions and credits.</label>
+</div>
+<p id="vahStatus" role="status" class="muted"></p>
+<button id="vahSave" type="button" disabled>Download approved post brief</button>
+<a id="vahMetricool" href="https://app.metricool.com/brands/connections?blogId=8327266" target="_blank" rel="noopener">Open Metricool</a>
+<p class="muted">This is a local review checklist, not a platform eligibility decision. No automatic publishing or API keys are included.</p>
+</section>
 </main>
 
 <footer>STREAMCLIP · Built for creators</footer>
 
 <script src="script.js"></script>
+<script defer src="studio.js"></script>
 <script type="module" src="viral.js"></script>
 </body>
 </html>
